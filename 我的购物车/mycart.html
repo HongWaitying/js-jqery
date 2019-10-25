@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的购物车</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+        ul{
+            list-style: none;
+        }
+        h1{
+            padding: 1em;
+            text-align: center;
+        }
+        .myshopping{
+            position: relative;
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #ccc;
+            padding: 10px 10px 100px;
+        }
+        li{
+            overflow: hidden;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        li:hover{
+            background-color: #eee;;
+        }
+        li span{
+            float: left;
+            margin: 10px;
+            line-height: 80px;
+            
+        }
+        li span:first-child{
+            border: 1px solid #d0d0d0;
+            line-height: 0;
+        }
+        li span p{
+            line-height: 40px;
+        }
+        li span p:first-child{
+            font-weight: bold;
+        }
+        li span:nth-child(2){
+            width: 300px;
+        }
+        .price{
+            font-size: 14px;
+            color: rgb(238, 53, 53);
+        }
+        li span input{
+            height: 30px;
+            width: 100px;
+            border-radius: 4px;
+            border:1px solid #ccc;
+            text-align: center;
+        }
+        li span:last-child{
+            color: white;
+            font-size: 14px;
+            background-color: #3ca2f5;
+            line-height: 28px;
+            border-radius: 4px;
+            padding: 2px 15px;
+            margin-top: 34px;
+        }
+        .btns{
+            position: absolute;
+            bottom: 20px;
+            vertical-align: middle;
+        }
+        .btns button{
+            padding: 4px 8px;
+            border-radius: 3px;
+            border: 1px solid #aaa;
+            background-color: #fff;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-right: 30px;
+        }
+        .btns a{
+            border: 1px solid #aaa;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 14px;
+            margin-right: 150px;
+        }
+        .btns span b{
+            display: inline-block;
+            color: #e94848;
+            height: 28px;
+            width: 90px;
+            border: 1px solid #aaa;
+            vertical-align: middle;
+            border-radius: 3px;
+            text-align: center;
+        }
+        .btns button:last-of-type{
+            margin-left: 40px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>我的购物车</h1>
+    <div class="myshopping">
+        <ul id="myproduct">
+            
+        </ul>
+        <div class="btns">
+            <button onclick="clearCart()">清空购物车</button>
+            <a href="index.html">继续购物</a>
+            <span>总数量：<b id="allnum"></b></span>
+            <span>总计：<b id="allprice"></b></span>
+            <button>去结算</button>
+        </div>
+    </div>
+<script>
+    mycart=JSON.parse(localStorage.getItem('mycart'));
+    console.log(mycart);
+
+    showList();
+    all();
+
+    function showList(){
+        var temp='';
+        for(var i=0;i<mycart.length;i++){
+            temp+=`
+            <li>
+            <span><img src="${mycart[i].picurl}" width="80px"></span>
+            <span>
+                <p>${mycart[i].title}</p>
+                <p class="price">￥${mycart[i].price.toFixed(2)}</p>
+            </span>
+            <span>
+                <input oninput="Num( this,${i} )" type="number" value="${mycart[i].num}">
+            </span>
+            <span class="price">￥<b id="countprice">${(mycart[i].num * mycart[i].price).toFixed(2)}</b></span>
+            <span onclick="delProduct(${mycart[i].id})">移除</span>
+        </li>
+            `;
+        }
+        document.getElementById('myproduct').innerHTML=temp;
+    }
+
+    //计算每个商品的总价格
+    function Num(input,index){
+        var val=Number(input.value.trim());
+        if(val<1){
+            var id=mycart[index].id;
+            if(confirm('购买数量不足1件，是否删除该商品！')){
+            mycart=mycart.filter(function(item){
+                return item.id !=id;
+            })
+            }else{
+                val=input.value=1;
+            }
+        }
+        var countprice=val*mycart[index].price;
+        mycart[index].num=val;
+
+        all();
+
+        document.getElementById('countprice').innerText=countprice.toFixed(2);
+        localStorage.setItem('mycart',JSON.stringify(mycart));
+    }
+    //移除
+    function delProduct( id ){
+        if(confirm('您确定要移除该商品吗！！！')){
+            mycart=mycart.filter(function(item){
+                return item.id !=id;
+            })
+        }
+        showList();
+        localStorage.setItem('mycart',JSON.stringify(mycart));
+    }
+    //总价格和总数量
+    function all(){
+        var allprice=0;
+        var allnum=0;
+        for(var i=0;i<mycart.length;i++){
+            allprice+=mycart[i].num*mycart[i].price;
+            allnum+=mycart[i].num;
+        }
+        document.getElementById('allprice').innerText=allprice.toFixed(2);
+        document.getElementById('allnum').innerText=allnum;
+    }
+    //清空购物车
+    function clearCart(){
+        mycart=[];
+        localStorage.setItem('mycart',JSON.stringify(mycart));
+        all();
+        showList();
+    }
+
+</script>
+</body>
+</html>

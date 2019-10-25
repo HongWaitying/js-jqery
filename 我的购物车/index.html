@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  ul{
+    list-style: none;
+  }
+  h1{
+    padding: 1em;
+    text-align: center;
+  }
+  .goods{
+    position: relative;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ccc;
+    padding: 30px 20px 100px;
+    
+  }
+  .goods .cartbtn{
+    position: absolute;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    right: 15px;
+    bottom: 15px;
+  }
+  .goods ul{
+    overflow: hidden;
+  }
+  .goods ul li{
+    float: left;
+    margin-right: 20px;
+  }
+  .goods ul li a,
+  .goods ul li a img{
+    display: block;
+  }
+  .goods ul li a.img{
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+  }
+  .goods ul li a.img h4{
+    padding: 10px;
+    font-weight: normal;
+    text-align: center;
+  }
+  .goods ul li a.img h4.price{
+    color: red;
+  }
+  .goods ul li a.btn{
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  a b{
+    display: inline-block;
+    color: white;
+    background-color: #e23838;
+    text-align: center;
+    line-height: 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-left: 4px;
+  }
+  </style>
+</head>
+<body>
+  
+
+  <h1>商品列表</h1>
+
+  <div class="goods">
+    <ul id="goods">
+      
+    </ul>
+
+    <a href="mycart.html" class="cartbtn">我的购物车<b id="totalnum">0</b></a>
+
+  </div>
+  <script>
+
+    var mycart=[];
+    if(localStorage.getItem('mycart')){
+        mycart=JSON.parse(localStorage.getItem('mycart'));
+      }
+
+    //商品列表数据
+    var goods = [
+      { id: 1, title: '劳力士手表', picurl: 'images/goods1.webp', num: 1, price: 1000 },
+      { id: 2, title: '华为手机', picurl: 'images/goods2.jpg', num: 1, price: 2000 }
+    ];
+
+    list();
+    countnum();
+
+    function list(){
+      var temp='';
+      for(var i=0;i<goods.length;i++){
+        temp+=`
+        <li>
+          <a href="#" class="img">
+            <img src="${goods[i].picurl}" width="200" height="200">
+            <h4>${goods[i].title}</h4>
+            <h4 class="price">￥${goods[i].price.toFixed(2)}</h4>
+          </a>
+          <a onclick="addCart( ${i} )" class="btn">添加购物车</a>
+        </li>
+        `;
+      }
+      document.getElementById('goods').innerHTML=temp;
+    }
+    function addCart(index){
+      
+      //先判断购物车中是否包含你要添加的商品
+      var isExisted=mycart.some(function(item){
+        return item.id==goods[index].id;
+      })
+      //如果此商品存在，就修改它的数量，使其数量加1
+      if(isExisted){
+        mycart.map(function(item){
+          if(item.id==goods[index].id){
+            item.num++;
+          }
+          return item;
+        })
+        //方法二
+        //mycart[goods[index].id].num++;
+
+      }else{
+        mycart.push(goods[index]);
+      }
+      //我的购物总数量
+      countnum();
+      //存储数据
+      localStorage.setItem('mycart',JSON.stringify(mycart));
+    }
+
+    //我的购物总数量
+     function countnum(){
+        var totalnum=mycart.reduce(function(prev,next){
+          return prev+Number(next.num);
+        },0)
+        document.getElementById('totalnum').innerHTML=totalnum;
+      }
+  </script>
+</body>
+</html>
