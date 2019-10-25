@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/input.css">
+    <script src="js/input.js"></script>
+    <title>数字输入框组件</title>
+</head>
+<body>
+    <div id="input1" class="input">
+        
+    </div>
+    <div id="input2" class="input">
+        
+    </div>
+    <div id="input3" class="input">
+        
+    </div>
+
+    <script>
+    myInput('input1',{
+        default:50,         //默认初始值
+        min:20,             //最小值
+        max:500,            //最大值
+        invalid:false,      //是否失效（false不失效 true失效）
+        stepvalue:10        //步伐值
+    })
+    myInput('input2',{
+        default:5,
+        min:10,
+        max:200,
+        invalid:true,
+        stepvalue:2
+    })
+    myInput('input3',{
+        default:5,
+        max:200,
+        invalid:false,
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+*{
+    padding-top: 30px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.checkbox{
+    padding: 5px 5px;
+}
+label{
+    display: inline-block;
+    user-select: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 18px;
+}
+label input{
+    display: none;
+}
+label input[disabled]+span{
+    opacity: .5;
+    cursor: not-allowed;
+}
+input + span::before{
+    display: inline-block;
+    content: " ";
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    vertical-align: top;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 18px;
+    vertical-align: middle;
+}
+input:checked + span{
+    color: #00aeff;
+    
+}
+input:checked + span::before{
+    border-color: #00aeff;
+    content: "✔";
+}

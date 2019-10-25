@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/checkbox.css">
+    <script src="js/checkbox.js"></script>
+    <title>复选框组件</title>
+</head>
+<body>
+    <div id="checkbox1" class="checkbox">
+        <!-- <label>
+            <input type="checkbox" name="motion" checked>
+            <span>篮球</span>
+        </label>
+        <label>
+            <input type="checkbox" name="motion">
+            <span>足球</span>
+        </label>
+        <label>
+            <input type="checkbox" name="motion">
+            <span>排球</span>
+        </label> -->
+    </div>
+    <div id="checkbox2" class="checkbox">
+        <!-- <label>
+            <input type="checkbox" name="hot" checked>
+            <span>麻辣</span>
+        </label>
+        <label>
+            <input type="checkbox" name="hot">
+            <span>微辣</span>
+        </label>
+        <label>
+            <input type="checkbox" name="hot">
+            <span>超辣</span>
+        </label> -->
+    </div>
+
+
+
+    <script>
+        myCheck('checkbox1',{
+            name:'motion',
+            selections:['篮球','足球','排球'],
+            defaultcheck:1,         //默认选中
+            invalid:[2]         //失效的选项的位置
+        })
+        myCheck('checkbox2',{
+            name:'hot',
+            selections:['麻辣','微辣','超辣'],
+            defaultcheck:2,
+            invalid:[3]
+        })
+    </script>
+</body>
+</html>

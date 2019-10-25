@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/radio.css">
+    <script src="js/radio.js"></script>
+    <title>单选框组件</title>
+</head>
+<body>
+    
+    <div id="radio1" class="radio">
+        
+    </div>
+    <div id="radio2" class="radio">
+
+    </div>
+    <div id="radio3" class="radio"></div>
+
+    <script>
+        myRadio('radio1',{
+            name:'examine',
+            selections:['审核','未审核','审核中'],
+            defaultcheck:1,             //默认选中
+            invalid:[2]                 //失效的选项的位置
+        })
+        myRadio('radio2',{
+            name:'sex',
+            selections:['男','女'],
+            defaultcheck:2,
+            invalid:[]
+        })
+        myRadio('radio3',{
+            name:'age',
+            selections:['少年','青年','中年','老年'],
+            defaultcheck:1,
+            invalid:[2,4]
+        })
+    
+    
+    
+    </script>
+</body>
+</html>
