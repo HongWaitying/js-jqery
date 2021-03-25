@@ -1,0 +1,210 @@
+html,
+body {
+  font-size: 62.5%;
+}
+.turntable {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  padding: 20px;
+  background-color: #f83c02;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 0 2px rgba(255, 255, 255, 0.3), inset 0 -2px 0 2px rgba(0, 0, 0, 0.2), 1px 2px 2px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.turntable .turntable_light {
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.turntable .turntable_light li {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.98;
+}
+.turntable .turntable_light li:nth-child(1) i {
+  background-color: #f3ef0b;
+  box-shadow: 0 0 8px 3px #f3ef0b;
+  animation: colorLamp 3s linear 0s infinite ;
+}
+.turntable .turntable_light li:nth-child(2) {
+  transform: rotateZ(15deg);
+}
+.turntable .turntable_light li:nth-child(2) i {
+  background-color: #12b403;
+  box-shadow: 0 0 8px 3px #12b403;
+  animation: colorLamp 3s linear 0.5s infinite;
+}
+.turntable .turntable_light li:nth-child(3) {
+  transform: rotateZ(30deg);
+}
+.turntable .turntable_light li:nth-child(3) i {
+  background-color: #155af0;
+  box-shadow: 0 0 8px 3px #155af0;
+  animation: colorLamp 3s linear 1s infinite ;
+}
+.turntable .turntable_light li:nth-child(4) {
+  transform: rotateZ(45deg);
+}
+.turntable .turntable_light li:nth-child(4) i {
+  background-color: #f30bcc;
+  box-shadow: 0 0 8px 3px #f30bcc;
+  animation: colorLamp 3s linear 1.5s infinite;
+}
+.turntable .turntable_light li:nth-child(5) {
+  transform: rotateZ(60deg);
+}
+.turntable .turntable_light li:nth-child(5) i {
+  background-color: #0bdb62;
+  box-shadow: 0 0 8px 3px #0bdb62;
+  animation: colorLamp 3s linear 2s infinite ;
+}
+.turntable .turntable_light li:nth-child(6) {
+  transform: rotateZ(75deg);
+}
+.turntable .turntable_light li:nth-child(6) i {
+  background-color: #0bd0f3;
+  box-shadow: 0 0 8px 3px #0bd0f3;
+  animation: colorLamp 3s linear 2.5s infinite;
+}
+.turntable .turntable_light li:nth-child(2n) {
+  opacity: 0.7;
+}
+.turntable .turntable_light li i {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.turntable .turntable_light li i:nth-child(1) {
+  top: 7px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.turntable .turntable_light li i:nth-child(2) {
+  top: 0;
+  bottom: 0;
+  right: 7px;
+  margin: auto 0;
+}
+.turntable .turntable_light li i:nth-child(3) {
+  bottom: 7px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.turntable .turntable_light li i:nth-child(4) {
+  top: 0;
+  left: 7px;
+  bottom: 0;
+  margin: auto 0;
+}
+.turntable .turntable_list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: all 2.5s ease-in-out;
+}
+.turntable .turntable_list::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 8px rgba(255, 255, 155, 0.5);
+  background-image: radial-gradient(circle at center, #ffffff 40%, #ff6600 85%);
+}
+.turntable .turntable_list li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  transform-origin: center bottom;
+}
+.turntable .turntable_list li .divider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: -50%;
+  transform-origin: right bottom;
+  background-color: rgba(255, 221, 0, 0.3);
+  box-shadow: inset -1px 0 0 rgba(255, 153, 0, 0.7), inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+}
+.turntable .turntable_list li .prize {
+  position: relative;
+  width: 30%;
+  padding-top: 4%;
+  text-align: center;
+  margin: 0 auto;
+}
+.turntable .turntable_list li .prize h3 {
+  font-size: 1.6rem;
+  color: red;
+  font-weight: 500;
+  margin: 0;
+}
+.turntable .turntable_list li .prize p {
+  font-size: 1.2rem;
+  margin: 5px 0 0;
+}
+.turntable .turntable_pointer {
+  position: absolute;
+  width: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.turntable .turntable_pointer img {
+  display: block;
+  width: 100%;
+  border: none;
+}
+@keyframes colorLamp {
+  0% {
+    background-color: #f3ef0b;
+    box-shadow: 0 0 8px 3px #f3ef0b;
+  }
+  20% {
+    background-color: #12b403;
+    box-shadow: 0 0 8px 3px #12b403;
+  }
+  40% {
+    background-color: #155af0;
+    box-shadow: 0 0 8px 3px #155af0;
+  }
+  60% {
+    background-color: #f30bcc;
+    box-shadow: 0 0 8px 3px #f30bcc;
+  }
+  80% {
+    background-color: #0bdb62;
+    box-shadow: 0 0 8px 3px #0bdb62;
+  }
+  100% {
+    background-color: #0bd0f3;
+    box-shadow: 0 0 8px 3px #0bd0f3;
+  }
+}

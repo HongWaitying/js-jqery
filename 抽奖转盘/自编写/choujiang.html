@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>抽奖转盘</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="./css/choujiang.css">
+</head>
+<body>
+  <div class="turntable">
+    <ul class="turntable_light">
+      <li>
+        <i></i><i></i><i></i><i></i>
+      </li>
+      <li>
+        <i></i><i></i><i></i><i></i>
+      </li>
+      <li>
+        <i></i><i></i><i></i><i></i>
+      </li>
+      <li>
+        <i></i><i></i><i></i><i></i>
+      </li>
+      <li>
+        <i></i><i></i><i></i><i></i>
+      </li>
+      <li>
+        <i></i><i></i><i></i><i></i>
+      </li>
+    </ul>
+    <ul class="turntable_list" id="turntable_list">
+      <!-- <li style="transform: rotateZ(0deg);">
+        <i class="divider" style="transform: rotateZ(36deg) skewY(18deg);"></i>
+        <div class="prize">
+          <h3>一等奖</h3>
+        </div>
+      </li>
+      <li style="transform: rotateZ(-288deg);">
+        <i class="divider" style="transform: rotateZ(36deg) skewY(18deg);"></i>
+        <div class="prize">
+          <h3>再接再厉</h3>
+        </div>
+      </li> -->
+    </ul>
+    <div class="turntable_pointer" id="turntable_pointer">
+      <img src="./pointer.png" alt="">
+    </div>
+  </div>
+  <script src="./choujiang.js"></script>
+  <script>
+    myTurntable('#turntable_list','#turntable_pointer',{
+      prizeInfo:[
+        {prizeDesc:'一等奖',prizeName:'iPhone7',probability:0.001},
+        {prizeDesc:'二等奖',prizeName:'100元话费',probability:0.005},
+        {prizeDesc:'三等奖',prizeName:'20元话费',probability:0.055},
+        {prizeDesc:'四等奖',prizeName:'5元话费+再来一次',probability:0.139},
+        {prizeDesc:'五等奖',prizeName:'100M流量',probability:0.2},
+        {prizeDesc:'鼓励奖',prizeName:'100M流量',probability:0.3},
+        {prizeDesc:'再接再厉',prizeName:'很遗憾没有中奖',probability:0.3}
+      ],
+      turn: 3, //转盘旋转最低的圈数
+    });
+  </script>
+</body>
+</html>
